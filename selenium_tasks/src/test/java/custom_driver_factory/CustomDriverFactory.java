@@ -1,4 +1,4 @@
-package task_4.custom_driver_factory;
+package custom_driver_factory;
 
 import org.openqa.selenium.HasCapabilities;
 import org.openqa.selenium.WebDriver;
@@ -30,6 +30,14 @@ public class CustomDriverFactory {
                 DesiredCapabilities caps = new DesiredCapabilities();
                 caps.setCapability(FirefoxDriver.MARIONETTE, true);
                 FirefoxBinary bin = new FirefoxBinary(new File("C:\\Program Files (x86)\\GEKO\\Mozilla Firefox\\firefox.exe"));
+                driver = new FirefoxDriver(bin, new FirefoxProfile(),caps);
+                System.out.println("FIRE FOX DRIVER CAPABILITIES:\n" + ((HasCapabilities) driver).getCapabilities());
+                return driver;
+            }
+            case FIREFOX_ESR: {
+                DesiredCapabilities caps = new DesiredCapabilities();
+                caps.setCapability(FirefoxDriver.MARIONETTE, false);
+                FirefoxBinary bin = new FirefoxBinary(new File("C:\\Program Files\\Mozilla Firefox\\firefox.exe"));
                 driver = new FirefoxDriver(bin, new FirefoxProfile(),caps);
                 System.out.println("FIRE FOX DRIVER CAPABILITIES:\n" + ((HasCapabilities) driver).getCapabilities());
                 return driver;

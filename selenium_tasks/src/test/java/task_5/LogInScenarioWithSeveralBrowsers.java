@@ -1,5 +1,7 @@
-package task_4;
+package task_5;
 
+import custom_driver_factory.CustomDriverFactory;
+import custom_driver_factory.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
@@ -18,11 +20,8 @@ public class LogInScenarioWithSeveralBrowsers {
 
     @BeforeClass
     public void beforeClass(){
-//        driver = CustomDriverFactory.getDriver(Driver.CHROME);
-//        driver = CustomDriverFactory.getDriver(Driver.FIREFOX_GEKO_DRIVER);
-//        driver = CustomDriverFactory.getDriver(Driver.INTERNET_EXPLORER);
+        driver = CustomDriverFactory.getDriver(Driver.FIREFOX_ESR);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
     }
 
     @AfterClass
