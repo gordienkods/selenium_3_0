@@ -1,14 +1,13 @@
 package core;
 
 import org.openqa.selenium.*;
-
 import java.util.List;
 
-public class Act {
+public class Action {
 
     private WebDriver driver = null;
 
-    public Act setDriver(WebDriver driver) {
+    public Action setDriver(WebDriver driver) {
         if (driver != null) {
             this.driver = driver;
         }
@@ -22,7 +21,7 @@ public class Act {
         throw new CoreException("No created driver!");
     }
 
-    public Act goTo(String url){
+    public Action goTo(String url){
         if ( !"(1920, 1080)".equals(this.driver.manage().window().getSize().toString())) {
             Dimension dimension = new Dimension(1920, 1080);
             this.driver.manage().window().setSize(dimension);
@@ -31,7 +30,7 @@ public class Act {
         return this;
     }
 
-    public Act click(By by){
+    public Action click(By by){
         findElement(by).click();
         return this;
     }
@@ -48,7 +47,7 @@ public class Act {
         return findElement(by).getAttribute(attribute);
     }
 
-    public Act setCookie(Cookie cookie){
+    public Action setCookie(Cookie cookie){
         driver.manage().addCookie(cookie);
         return this;
     }
@@ -69,6 +68,13 @@ public class Act {
         }
     }
 
+    public Boolean isElementPresent(By by){
+        if (findElements(by).size() > 0){
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 }
 

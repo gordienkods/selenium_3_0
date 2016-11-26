@@ -1,6 +1,6 @@
 package task_7;
 
-import core.Act;
+import core.Action;
 import core.UI;
 import custom_driver_factory.CustomDriverFactory;
 import custom_driver_factory.Driver;
@@ -11,13 +11,12 @@ import org.testng.AssertJUnit;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class AllAdminMenusCheck {
+public class AllAdminMenuCheck {
 
-    Act act = new Act();
+    Action act = new Action();
 
     @BeforeClass
     public void beforeClass(){
@@ -28,7 +27,6 @@ public class AllAdminMenusCheck {
                 .goTo("http://localhost/litecart/admin")
                 .getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
-
     @AfterClass
     public void afterClass(){
         act.getDriver().quit();
@@ -56,12 +54,11 @@ public class AllAdminMenusCheck {
 
             System.err.println("    MENU: " + menuHeader);
             System.err.println("SUB MENU: " + size);
-
         }
 
     }
 
-    public String doMapMainMenuHeaderToPageHeader(String mainMenuHeader){
+    private String doMapMainMenuHeaderToPageHeader(String mainMenuHeader){
         switch (mainMenuHeader){
             case "Background Jobs" : {
                 return "Job Modules";
