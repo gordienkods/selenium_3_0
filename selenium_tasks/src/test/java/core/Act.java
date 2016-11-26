@@ -1,9 +1,6 @@
 package core;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Cookie;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 
 import java.util.List;
 
@@ -26,6 +23,10 @@ public class Act {
     }
 
     public Act goTo(String url){
+        if ( !"(1920, 1080)".equals(this.driver.manage().window().getSize().toString())) {
+            Dimension dimension = new Dimension(1920, 1080);
+            this.driver.manage().window().setSize(dimension);
+        }
         driver.get(url);
         return this;
     }
@@ -52,8 +53,20 @@ public class Act {
         return this;
     }
 
-    private WebElement findElement(By by){
+    public WebElement findElement(By by){
         return driver.findElement(by);
+    }
+
+    public String getText(By by){
+        return findElement(by).getText();
+    }
+
+    public void waitABit(Integer timeOut){
+        try {
+            Thread.sleep(timeOut);
+        } catch (Throwable t) {
+            t.printStackTrace();
+        }
     }
 
 
