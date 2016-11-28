@@ -1,6 +1,7 @@
 package task_7;
 
 import core.Action;
+import core.Type;
 import core.UI;
 import custom_driver_factory.CustomDriverFactory;
 import custom_driver_factory.Driver;
@@ -39,16 +40,16 @@ public class AllAdminMenuCheck {
                                      "Translations", "Users", "vQmods"};
         String actPageHeader, expPageHeader;
 
-        List<WebElement> mainMenuElements = act.findElements(By.xpath(UI.MAIN_MENU_ALL_MAIN_ELEMENTS));
+        List<WebElement> mainMenuElements = act.getDriver().findElements(By.xpath(UI.MAIN_MENU_ALL_MAIN_ELEMENTS));
         AssertJUnit.assertTrue("Some elements of main menu are missed!", mainMenuElements.size() == 17);
         for (String menuHeader : mainMenuHeaders){
-            Integer size = act.click(By.xpath("//a//span[text()='" + menuHeader + "']")).
-                    findElements(By.xpath("//a//span[text()='" + menuHeader + "']/ancestor::li//li")).size();
+            Integer size = act.findElement(Type.XPATH, "//a//span[text()='" + menuHeader + "']").click().
+                    findElements(Type.XPATH,"//a//span[text()='" + menuHeader + "']/ancestor::li//li").size();
 
             for (int i = 1; i <= size; i++){
-                expPageHeader = act.click(By.xpath("//a//span[text()='" + menuHeader + "']/ancestor::li//li[" + i + "]"))
-                                    .getText(By.xpath("//a//span[text()='" + menuHeader + "']/ancestor::li//li[" + i + "]"));
-                actPageHeader = act.findElement(By.xpath(".//*[@id='content']/h1")).getText();
+                expPageHeader = act.findElement(Type.XPATH, "//a//span[text()='" + menuHeader + "']/ancestor::li//li[" + i + "]").click()
+                                    .getText();
+                actPageHeader = act.findElement(Type.XPATH, ".//*[@id='content']/h1").getText();
                 AssertJUnit.assertEquals(doMapMainMenuHeaderToPageHeader(expPageHeader), actPageHeader);
             }
 

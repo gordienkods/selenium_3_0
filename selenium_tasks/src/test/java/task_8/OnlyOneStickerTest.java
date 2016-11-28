@@ -1,6 +1,7 @@
 package task_8;
 
 import core.Action;
+import core.Type;
 import custom_driver_factory.CustomDriverFactory;
 import custom_driver_factory.Driver;
 import org.openqa.selenium.By;
@@ -32,11 +33,11 @@ public class OnlyOneStickerTest {
 
     @Test
     public void only_one_sticker_per_product(){
-        String product = "//li[@class='product column shadow hover-light']";
-        Integer allProducts = act.findElements(By.xpath(product)).size();
+
+        Integer allProducts = act.findElements(Type.XPATH, "//li[@class='product column shadow hover-light']").size();
 
         for (int i = 1; i <= allProducts; i++ ){
-            WebElement currentProduct = act.findElement(By.xpath("(//li[@class='product column shadow hover-light'])[" + i + "]"));
+            WebElement currentProduct = act.getDriver().findElement(By.xpath("(//li[@class='product column shadow hover-light'])[" + i + "]"));
             String productName = currentProduct.findElement(By.xpath(".//div[@class='name']")).getText();
             String productSticker = currentProduct.findElement(By.xpath(".//*[contains(@class,'sticker')]")).getText();
             Integer stickersCount = currentProduct.findElements(By.xpath(".//*[contains(@class,'sticker')]")).size();

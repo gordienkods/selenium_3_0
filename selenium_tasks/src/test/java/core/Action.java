@@ -6,6 +6,7 @@ import java.util.List;
 public class Action {
 
     private WebDriver driver = null;
+    private CustomWebElement customWebElement = null;
 
     public Action setDriver(WebDriver driver) {
         if (driver != null) {
@@ -30,21 +31,14 @@ public class Action {
         return this;
     }
 
-    public Action click(By by){
-        findElement(by).click();
+    public Action click(){
+        driver.findElement(getElementByLocatorType(customWebElement.getType(),customWebElement.getLocator())).click();
         return this;
     }
 
-    public List<WebElement> findElements_(By by){
-       return findElements(by);
-    }
 
-    public List<WebElement> findElements(By by){
-       return driver.findElements(by);
-    }
-
-    public String getAttribute(By by, String attribute){
-        return findElement(by).getAttribute(attribute);
+    public List<WebElement> findElements(Type type, String locator){
+       return driver.findElements(getElementByLocatorType(type, locator));
     }
 
     public Action setCookie(Cookie cookie){
@@ -52,27 +46,50 @@ public class Action {
         return this;
     }
 
-    public WebElement findElement(By by){
-        return driver.findElement(by);
+    public Action findElement(Type type, String locator){
+        customWebElement = new CustomWebElement();
+        customWebElement.setType(type);
+        customWebElement.setLocator(locator);
+        return this;
     }
 
-    public String getText(By by){
-        return findElement(by).getText();
+    public String getText(){
+        return driver.findElement(getElementByLocatorType(customWebElement.getType(), customWebElement.getLocator())).getText();
     }
 
-    public void waitABit(Integer timeOut){
+    public String getAttribute(String attribute){
+        return driver.findElement(getElementByLocatorType(customWebElement.getType(),
+                customWebElement.getLocator())).getAttribute(attribute);
+    }
+
+    public Action waitABit(Integer timeOut){
         try {
             Thread.sleep(timeOut);
         } catch (Throwable t) {
             t.printStackTrace();
         }
+        return this;
     }
 
-    public Boolean isElementPresent(By by){
-        if (findElements(by).size() > 0){
+    public Boolean isElementPresent(){
+        if (findElements(customWebElement.getType(), customWebElement.getLocator()).size() > 0){
             return true;
         } else {
             return false;
+        }
+    }
+
+    private By getElementByLocatorType(Type type, String locator){
+        switch (type){
+            case XPATH: {
+                return By.xpath(locator);
+            }
+            case CSS: {
+                return By.cssSelector(locator);
+            }
+            default: {
+                throw new CoreException("No case for locator type!");
+            }
         }
     }
 
