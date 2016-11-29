@@ -35,35 +35,35 @@ public class CountriesOrderAndGeoZonesTes {
         act.getDriver().quit();
     }
 
-//    @Test
-//    public void countries_alphabet_order_tes(){
-//        Integer allCountriesLines = act.findElements(By.xpath("//table[@class='dataTable']//tr[@class='row']")).size();
-//        List<String> actCountriesOrder = new ArrayList<>();
-//        List<String> expCountriesOrder = new ArrayList<>();
-//
-//        for (int i = 1; i <= allCountriesLines; i++){
-//            actCountriesOrder.add(act.getText(By.xpath("//table[@class='dataTable']//tr[@class='row'][" + i + "]//td[5]")));
-//            expCountriesOrder.add(act.getText(By.xpath("//table[@class='dataTable']//tr[@class='row'][" + i + "]//td[5]")));
-//        }
-//
-//        sortByAlphabet(expCountriesOrder);
-//
-//        for (int i = 0; i < allCountriesLines; i++){
-//            System.err.println("UNSORTED: " + actCountriesOrder.get(i) + "  SORTED: " + expCountriesOrder.get(i));
-//            AssertJUnit.assertEquals(expCountriesOrder.get(i), actCountriesOrder.get(i));
-//        }
-//    }
+    @Test
+    public void countries_alphabet_order_tes(){
+        Integer allCountriesLines = act.findElements(Type.XPATH, "//table[@class='dataTable']//tr[@class='row']").size();
+        List<String> actCountriesOrder = new ArrayList<>();
+        List<String> expCountriesOrder = new ArrayList<>();
+
+        for (int i = 1; i <= allCountriesLines; i++){
+            actCountriesOrder.add(act.findElement(Type.XPATH, "//table[@class='dataTable']//tr[@class='row'][" + i + "]//td[5]").getText());
+            expCountriesOrder.add(act.getText());
+        }
+
+        sortByAlphabet(expCountriesOrder);
+
+        for (int i = 0; i < allCountriesLines; i++){
+            System.err.println("UNSORTED: " + actCountriesOrder.get(i) + "  SORTED: " + expCountriesOrder.get(i));
+            AssertJUnit.assertEquals(expCountriesOrder.get(i), actCountriesOrder.get(i));
+        }
+    }
 
     @Test
     public void zones_in_alphabet_order_test(){
         Integer allCountriesLines = act.findElements(Type.XPATH, "//table[@class='dataTable']//tr[@class='row']").size();
-        List<String> actZonesOrder = new ArrayList<>();
-        List<String> expZonesOrder = new ArrayList<>();
 
         for (int i = 1; i <= allCountriesLines; i++){
             Integer zonesCount = Integer.parseInt(act.findElement(Type.XPATH,
                                          "//table[@class='dataTable']//tr[@class='row'][" + i + "]//td[6]").getText());
             if(zonesCount > 0){
+                List<String> actZonesOrder = new ArrayList<>();
+                List<String> expZonesOrder = new ArrayList<>();
                 Integer allZonesLines =
                         act.findElement(Type.XPATH, "//table[@class='dataTable']//tr[@class='row'][" + i + "]//td[5]//a")
                             .click()
@@ -73,18 +73,8 @@ public class CountriesOrderAndGeoZonesTes {
                 for (int j = 2; j < allZonesLines; j++ ){
                     actZonesOrder.add(act.findElement(Type.XPATH, "//table[@id='table-zones']//tr[" + j + "]//td[3]/input").getAttribute("value"));
                     expZonesOrder.add(act.getAttribute("value"));
-
-                    System.err.println(act.getAttribute("value"));
                 }
-                System.err.println("EXP SIZE " + expZonesOrder.size());
                 sortByAlphabet(expZonesOrder);
-                System.err.println("EXP SIZE " + expZonesOrder.size());
-
-                System.err.println("------");
-                for (String s : actZonesOrder){
-                    System.err.println(s);
-                }
-                System.err.println("------");
 
                 for (int j = 0; j < expZonesOrder.size(); j++){
                     System.err.println("UNSORTED: " + actZonesOrder.get(j) + "  SORTED: " + expZonesOrder.get(j));
@@ -92,7 +82,6 @@ public class CountriesOrderAndGeoZonesTes {
                 }
                 act.getDriver().navigate().back();
             }
-
         }
     }
 
