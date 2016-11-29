@@ -2,9 +2,9 @@ package task_9;
 
 import core.Action;
 import core.Type;
+import core.URL;
 import custom_driver_factory.CustomDriverFactory;
 import custom_driver_factory.Driver;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
 import org.testng.AssertJUnit;
 import org.testng.annotations.AfterClass;
@@ -24,10 +24,10 @@ public class CountriesOrderAndGeoZonesTes {
     @BeforeClass
     public void beforeClass(){
         act.setDriver(CustomDriverFactory.getDriver(Driver.CHROME))
-                .goTo("http://localhost/litecart")
+                .goTo(URL.MAIN_URL)
                 .setCookie(new Cookie("remember_me", "admin%3Ad8bcbe282b74952a8f4399be154cda5247815692"))
                 .setCookie(new Cookie("LCSESSID", "meha6tiu4g606btg886t0p9a16"))
-                .goTo("http://localhost/litecart/admin/?app=countries&doc=countries")
+                .goTo(URL.MAIN_URL + URL.MAIN_COSTUMER_URL)
                 .getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
     @AfterClass

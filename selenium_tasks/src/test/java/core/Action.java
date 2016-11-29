@@ -62,6 +62,11 @@ public class Action {
                 customWebElement.getLocator())).getAttribute(attribute);
     }
 
+    public String getCssValue(String attribute){
+        return driver.findElement(getElementByLocatorType(customWebElement.getType(),
+                customWebElement.getLocator())).getCssValue(attribute);
+    }
+
     public Action waitABit(Integer timeOut){
         try {
             Thread.sleep(timeOut);
