@@ -7,10 +7,14 @@ import core.URL;
 import custom_driver_factory.CustomDriverFactory;
 import custom_driver_factory.Driver;
 import org.openqa.selenium.Cookie;
+import org.testng.AssertJUnit;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public class CampaignsGoodsPriceTest {
@@ -35,9 +39,10 @@ public class CampaignsGoodsPriceTest {
     public void only_one_sticker_per_product(){
         ItemDataHolder firstProductInCampaign = new ItemDataHolder();
         ItemDataHolder productDetailInfo = new ItemDataHolder();
-        ItemDataHolder productExpectedInfo = new ItemDataHolder();
-
-//        productExpectedInfo.setProductName("Yellow Duck");
+        HashMap<String, String> firstProductInCampaignExpValues = initFirstProductInCampaignsExpValues();
+        HashMap<String, String> productDetailInfoExpValues = initProductDetailInfoExpValues();
+        HashMap<String, String> firstProductInCampaignActValues;
+        HashMap<String, String> productDetailInfoActValues;
 
 
         firstProductInCampaign.setMainPageProductName(act.findElement(Type.XPATH, UI.FIRST_ITEM_IN_CAMPAIGNS_GOODS_LIST + UI.CONTAINER_WITH_ITEM_NAME).getText());
@@ -64,8 +69,45 @@ public class CampaignsGoodsPriceTest {
         productDetailInfo.setNewPriceFontWeight(act.getCssValue("font-weight"));
         productDetailInfo.setNewPriceFontSize(act.getCssValue("font-size"));
 
-        System.err.println(firstProductInCampaign);
-        System.err.println(productDetailInfo);
+        firstProductInCampaignActValues = firstProductInCampaign.toHashMap();
+        for (Map.Entry<String,String> entry : firstProductInCampaignExpValues.entrySet()){
+            System.err.println("KEY: " + entry.getKey() + "\nEXP: " + entry.getValue() + "\nACT: " + firstProductInCampaignActValues.get(entry.getKey()));
+            AssertJUnit.assertEquals(entry.getValue() ,firstProductInCampaignActValues.get(entry.getKey()));
+        }
+
+        productDetailInfoActValues = productDetailInfo.toHashMap();
+        for (Map.Entry<String,String> entry : productDetailInfoExpValues.entrySet()){
+            System.err.println("KEY: " + entry.getKey() + "\nEXP: " + entry.getValue() + "\nACT: " + productDetailInfoActValues.get(entry.getKey()));
+            AssertJUnit.assertEquals(entry.getValue(), productDetailInfoActValues.get(entry.getKey()));
+        }
+    }
+
+    private HashMap<String,String> initFirstProductInCampaignsExpValues(){
+        HashMap<String, String> result = new HashMap<>();
+        result.put("PRODUCT_NAME","Yellow Duck");
+        result.put("OLD_PRICE","$20");
+        result.put("NEW_PRICE","$18");
+        result.put("OLD_PRICE_FONT_SIZE","14.4px");
+        result.put("OLD_PRICE_TEXT_DECORATION","line-through");
+        result.put("OLD_PRICE_COLOR","rgba(119, 119, 119, 1)");
+        result.put("NEW_PRICE_COLOR","rgba(204, 0, 0, 1)");
+        result.put("NEW_PRICE_FONT_SIZE","18px");
+        result.put("NEW_PRICE_FONT_WEIGHT","none");
+        return result;
+    }
+
+    private HashMap<String,String> initProductDetailInfoExpValues(){
+        HashMap<String, String> result = new HashMap<>();
+        result.put("PRODUCT_NAME","Yellow Duck");
+        result.put("OLD_PRICE","$20");
+        result.put("NEW_PRICE","$18");
+        result.put("OLD_PRICE_FONT_SIZE","16px");
+        result.put("OLD_PRICE_TEXT_DECORATION","line-through");
+        result.put("OLD_PRICE_COLOR","rgba(102, 102, 102, 1)");
+        result.put("NEW_PRICE_COLOR","rgba(204, 0, 0, 1)");
+        result.put("NEW_PRICE_FONT_SIZE","22px");
+        result.put("NEW_PRICE_FONT_WEIGHT","bold");
+        return result;
     }
 
 }
