@@ -36,6 +36,10 @@ public class Action {
         return this;
     }
 
+    public Action sendKeys(String text){
+        driver.findElement(getElementByLocatorType(customWebElement.getType(),customWebElement.getLocator())).sendKeys(text);
+        return this;
+    }
 
     public List<WebElement> findElements(Type type, String locator){
        return driver.findElements(getElementByLocatorType(type, locator));
