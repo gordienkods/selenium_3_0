@@ -43,13 +43,13 @@ public class AllAdminMenuCheck {
         List<WebElement> mainMenuElements = act.getDriver().findElements(By.xpath(UI.MAIN_MENU_ALL_MAIN_ELEMENTS));
         AssertJUnit.assertTrue("Some elements of main menu are missed!", mainMenuElements.size() == 17);
         for (String menuHeader : mainMenuHeaders){
-            Integer size = act.findElement(Type.XPATH, "//a//span[text()='" + menuHeader + "']").click().
+            Integer size = act.ui(Type.XPATH, "//a//span[text()='" + menuHeader + "']").click().
                     findElements(Type.XPATH,"//a//span[text()='" + menuHeader + "']/ancestor::li//li").size();
 
             for (int i = 1; i <= size; i++){
-                expPageHeader = act.findElement(Type.XPATH, "//a//span[text()='" + menuHeader + "']/ancestor::li//li[" + i + "]").click()
+                expPageHeader = act.ui(Type.XPATH, "//a//span[text()='" + menuHeader + "']/ancestor::li//li[" + i + "]").click()
                                     .getText();
-                actPageHeader = act.findElement(Type.XPATH, ".//*[@id='content']/h1").getText();
+                actPageHeader = act.ui(Type.XPATH, ".//*[@id='content']/h1").getText();
                 AssertJUnit.assertEquals(doMapMainMenuHeaderToPageHeader(expPageHeader), actPageHeader);
             }
 

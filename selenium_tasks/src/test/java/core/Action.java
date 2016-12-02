@@ -50,7 +50,7 @@ public class Action {
         return this;
     }
 
-    public Action findElement(Type type, String locator){
+    public Action ui(Type type, String locator){
         customWebElement = new CustomWebElement();
         customWebElement.setType(type);
         customWebElement.setLocator(locator);

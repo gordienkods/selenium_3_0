@@ -13,7 +13,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -45,26 +44,26 @@ public class CampaignsGoodsPriceTest {
         HashMap<String, String> productDetailInfoActValues;
 
 
-        firstProductInCampaign.setMainPageProductName(act.findElement(Type.XPATH, UI.FIRST_ITEM_IN_CAMPAIGNS_GOODS_LIST + UI.CONTAINER_WITH_ITEM_NAME).getText());
-        firstProductInCampaign.setOldPrice(act.findElement(Type.XPATH, UI.FIRST_ITEM_IN_CAMPAIGNS_GOODS_LIST + UI.OLD_PRICE).getText());
+        firstProductInCampaign.setMainPageProductName(act.ui(Type.XPATH, UI.FIRST_ITEM_IN_CAMPAIGNS_GOODS_LIST + UI.CONTAINER_WITH_ITEM_NAME).getText());
+        firstProductInCampaign.setOldPrice(act.ui(Type.XPATH, UI.FIRST_ITEM_IN_CAMPAIGNS_GOODS_LIST + UI.OLD_PRICE).getText());
         firstProductInCampaign.setOldPriceColor(act.getCssValue("color"));
         firstProductInCampaign.setOldPriceTextDecoration(act.getCssValue("text-decoration"));
         firstProductInCampaign.setOldPriceFontSize(act.getCssValue("font-size"));
 
-        firstProductInCampaign.setNewPrice(act.findElement(Type.XPATH, UI.FIRST_ITEM_IN_CAMPAIGNS_GOODS_LIST + UI.NEW_PRICE).getText());
+        firstProductInCampaign.setNewPrice(act.ui(Type.XPATH, UI.FIRST_ITEM_IN_CAMPAIGNS_GOODS_LIST + UI.NEW_PRICE).getText());
         firstProductInCampaign.setNewPriceColor(act.getCssValue("color"));
         firstProductInCampaign.setNewPriceFontWeight(act.getCssValue("text-decoration"));
         firstProductInCampaign.setNewPriceFontSize(act.getCssValue("font-size"));
 
-        act.findElement(Type.XPATH, UI.FIRST_ITEM_IN_CAMPAIGNS_GOODS_LIST).click();
+        act.ui(Type.XPATH, UI.FIRST_ITEM_IN_CAMPAIGNS_GOODS_LIST).click();
 
-        productDetailInfo.setProductName(act.findElement(Type.XPATH, UI.DETEIL_PAGE_HEADER).getText());
-        productDetailInfo.setOldPrice(act.findElement(Type.XPATH, UI.OLD_PRICE).getText());
+        productDetailInfo.setProductName(act.ui(Type.XPATH, UI.DETEIL_PAGE_HEADER).getText());
+        productDetailInfo.setOldPrice(act.ui(Type.XPATH, UI.OLD_PRICE).getText());
         productDetailInfo.setOldPriceColor(act.getCssValue("color"));
         productDetailInfo.setOldPriceTextDecoration(act.getCssValue("text-decoration"));
         productDetailInfo.setOldPriceFontSize(act.getCssValue("font-size"));
 
-        productDetailInfo.setNewPrice(act.findElement(Type.XPATH, UI.NEW_PRICE).getText());
+        productDetailInfo.setNewPrice(act.ui(Type.XPATH, UI.NEW_PRICE).getText());
         productDetailInfo.setNewPriceColor(act.getCssValue("color"));
         productDetailInfo.setNewPriceFontWeight(act.getCssValue("font-weight"));
         productDetailInfo.setNewPriceFontSize(act.getCssValue("font-size"));

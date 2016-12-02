@@ -42,7 +42,7 @@ public class CountriesOrderAndGeoZonesTes {
         List<String> expCountriesOrder = new ArrayList<>();
 
         for (int i = 1; i <= allCountriesLines; i++){
-            actCountriesOrder.add(act.findElement(Type.XPATH, "//table[@class='dataTable']//tr[@class='row'][" + i + "]//td[5]").getText());
+            actCountriesOrder.add(act.ui(Type.XPATH, "//table[@class='dataTable']//tr[@class='row'][" + i + "]//td[5]").getText());
             expCountriesOrder.add(act.getText());
         }
 
@@ -59,19 +59,19 @@ public class CountriesOrderAndGeoZonesTes {
         Integer allCountriesLines = act.findElements(Type.XPATH, "//table[@class='dataTable']//tr[@class='row']").size();
 
         for (int i = 1; i <= allCountriesLines; i++){
-            Integer zonesCount = Integer.parseInt(act.findElement(Type.XPATH,
+            Integer zonesCount = Integer.parseInt(act.ui(Type.XPATH,
                                          "//table[@class='dataTable']//tr[@class='row'][" + i + "]//td[6]").getText());
             if(zonesCount > 0){
                 List<String> actZonesOrder = new ArrayList<>();
                 List<String> expZonesOrder = new ArrayList<>();
                 Integer allZonesLines =
-                        act.findElement(Type.XPATH, "//table[@class='dataTable']//tr[@class='row'][" + i + "]//td[5]//a")
+                        act.ui(Type.XPATH, "//table[@class='dataTable']//tr[@class='row'][" + i + "]//td[5]//a")
                             .click()
                             .findElements(Type.XPATH, "//table[@id='table-zones']//tr")
                             .size();
 
                 for (int j = 2; j < allZonesLines; j++ ){
-                    actZonesOrder.add(act.findElement(Type.XPATH, "//table[@id='table-zones']//tr[" + j + "]//td[3]/input").getAttribute("value"));
+                    actZonesOrder.add(act.ui(Type.XPATH, "//table[@id='table-zones']//tr[" + j + "]//td[3]/input").getAttribute("value"));
                     expZonesOrder.add(act.getAttribute("value"));
                 }
                 sortByAlphabet(expZonesOrder);
