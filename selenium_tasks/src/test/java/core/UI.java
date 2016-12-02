@@ -17,4 +17,23 @@ public class UI {
     public static final String USER_NAME_INPUT_ON_INDEX = "//input[@name='email']";
     public static final String PASSWORD_INPUT_ON_INDEX = "//input[@name='password']";
     public static final String LOG_IN_BUTTON = "//button[text()='Login']";
+    public static final String CATALOG_IN_LEFT_MENU = "//*[text()='Catalog']/ancestor::a";
+    public static final String ADD_NEW_PRODUCT_BUTTON = "//*[contains(text(),'Add New Product')]";
+    public static final String ENABLED_STATUS_RADIO_BUTTON = "//label[contains(text(),'Enabled')]//input";
+    public static final String PRODUCT_NAME = "//input[@name='name[en]']";
+    public static final String CODE = "//input[@name='code']";
+    public static final String RUBBER_DUCKS_CATEGORY = "//*[contains(text(),'Rubber Ducks')]/ancestor::tr[1]//input";
+    public static final String PRODUCT_GROUPS_MALE = "//*[contains(text(),'Male')]/ancestor::tr[1]//input";
+    public static final String UPLOAD_IMAGES_INPUT = "//input[@name='new_images[]']";
+    public static final String DATE_VLID_FROM_INPUT = "//*[text()='Date Valid From']/following-sibling::input";
+    public static final String DATE_VLID_TO_INPUT = "//*[text()='Date Valid To']/following-sibling::input";
+    public static final String INFORMATION_TAB = "//a[text()='Information']";
+    public static final String MANUFACTURER_SELECT = "//select[@name='manufacturer_id']";
+    public static final String KEYWORDS_INPUT = "//*[text()='Keywords']/following-sibling::input";
+    public static final String SHORT_DESCRIPTION_INPUT = "//*[text()='Short Description']/following-sibling::*//input";
+    public static final String DESCRIPTION_FIELD = "//div[@class='trumbowyg-editor']";
+    public static final String HEAD_TITLE_INPUT = "//*[text()='Head Title']/following-sibling::*//input";
+    public static final String META_DESCRIPTION_INPUT = "//*[text()='Meta Description']/following-sibling::*//input";
+    public static final String PRICES_TAB = "//a[text()='Prices']";
+
 }
