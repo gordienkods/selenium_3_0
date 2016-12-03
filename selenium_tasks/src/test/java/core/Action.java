@@ -66,6 +66,15 @@ public class Action {
                 customWebElement.getLocator())).getAttribute(attribute);
     }
 
+    public Action setAttribute(String attribute, String value){
+        if (customWebElement.getType().equals(Type.CSS)) {
+            String js = "$(\"[name=purchase_price]\").attr(\"" + attribute + "\", \"" + value + "\");";
+            ((JavascriptExecutor) driver).executeScript(js);
+            return this;
+        }
+        throw new CoreException("Yuo can't set value into element using xpath!");
+    }
+
     public String getCssValue(String attribute){
         return driver.findElement(getElementByLocatorType(customWebElement.getType(),
                 customWebElement.getLocator())).getCssValue(attribute);

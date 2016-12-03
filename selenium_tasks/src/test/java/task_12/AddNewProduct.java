@@ -1,6 +1,7 @@
 package task_12;
 
 import core.Action;
+import core.Type;
 import core.URL;
 import custom_driver_factory.CustomDriverFactory;
 import custom_driver_factory.Driver;
@@ -34,7 +35,7 @@ public class AddNewProduct {
 
     @Test
     public void add_new_product(){
-
+        
     }
 
 
