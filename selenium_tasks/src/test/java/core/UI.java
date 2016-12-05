@@ -13,7 +13,7 @@ public class UI {
     public static final String FIRST_NAME_INPUT_ON_ADD_NEW_CUSTOMER_PAGE = "//*[contains(text(), 'First Name')]/input";
     public static final String PASSWORD_INPUT_ON_ADD_NEW_CUSTOMER_PAGE = "//*[contains(text(), 'Password')]/input";
     public static final String LOG_OUT_BUTTON_IN_ADMIN = "//a[@title='Logout']";
-    public static final String SAVE_BUTTON_ON_ADD_NEW_CUSTOMER_PAGE = "//*[contains(text(),'Save')]";
+    public static final String SAVE_BUTTON = "//*[contains(text(),'Save')]";
     public static final String USER_NAME_INPUT_ON_INDEX = "//input[@name='email']";
     public static final String PASSWORD_INPUT_ON_INDEX = "//input[@name='password']";
     public static final String LOG_IN_BUTTON = "//button[text()='Login']";
@@ -25,8 +25,8 @@ public class UI {
     public static final String RUBBER_DUCKS_CATEGORY = "//*[contains(text(),'Rubber Ducks')]/ancestor::tr[1]//input";
     public static final String PRODUCT_GROUPS_MALE = "//*[contains(text(),'Male')]/ancestor::tr[1]//input";
     public static final String UPLOAD_IMAGES_INPUT = "//input[@name='new_images[]']";
-    public static final String DATE_VLID_FROM_INPUT = "//*[text()='Date Valid From']/following-sibling::input";
-    public static final String DATE_VLID_TO_INPUT = "//*[text()='Date Valid To']/following-sibling::input";
+    public static final String DATE_VLID_FROM_INPUT = "[name=\"date_valid_from\"]";
+    public static final String DATE_VLID_TO_INPUT = "[name=\"date_valid_to\"]";
     public static final String INFORMATION_TAB = "//a[text()='Information']";
     public static final String MANUFACTURER_SELECT = "//select[@name='manufacturer_id']";
     public static final String KEYWORDS_INPUT = "//*[text()='Keywords']/following-sibling::input";
@@ -35,5 +35,12 @@ public class UI {
     public static final String HEAD_TITLE_INPUT = "//*[text()='Head Title']/following-sibling::*//input";
     public static final String META_DESCRIPTION_INPUT = "//*[text()='Meta Description']/following-sibling::*//input";
     public static final String PRICES_TAB = "//a[text()='Prices']";
+    public static final String QUANTITY = "[name=\"quantity\"]";
+    public static final String PURCHASE_PRICE_INPUT = "[name=\"purchase_price\"]";
+    public static final String PURCHASE_PRICE_SELECT = "//select[@name='purchase_price_currency_code']";
+    public static final String PRICE_INPUT_USD = "[name=\"prices[USD]\"]";
+    public static final String PRICE_INPUT_EUR = "[name=\"prices[EUR]\"]";
+    public static final String PRICE_INCLU_TAX_USD_INPUT = "[name=\"gross_prices[USD]\"]";
+    public static final String PRICE_INCLU_TAX_EUR_INPUT = "[name=\"gross_prices[EUR]\"]";
 
 }

@@ -40,14 +40,14 @@ public class NewUserRegistration {
 
         act.goTo(URL.ADMIN_CUSTOMERS)
             .ui(XPATH, UI.ADD_NEW_CUSTOMER_BUTTON).click()
-            .ui(XPATH, UI.EMAIL_ADDRESS_INPUT_ON_ADD_NEW_CUSTOMER_PAGE).sendKeys(email)
-            .ui(XPATH, UI.FIRST_NAME_INPUT_ON_ADD_NEW_CUSTOMER_PAGE).sendKeys(name)
-            .ui(XPATH, UI.PASSWORD_INPUT_ON_ADD_NEW_CUSTOMER_PAGE).sendKeys(pass)
-            .ui(XPATH, UI.SAVE_BUTTON_ON_ADD_NEW_CUSTOMER_PAGE).click()
+            .ui(XPATH, UI.EMAIL_ADDRESS_INPUT_ON_ADD_NEW_CUSTOMER_PAGE).sendKeysToElement(email)
+            .ui(XPATH, UI.FIRST_NAME_INPUT_ON_ADD_NEW_CUSTOMER_PAGE).sendKeysToElement(name)
+            .ui(XPATH, UI.PASSWORD_INPUT_ON_ADD_NEW_CUSTOMER_PAGE).sendKeysToElement(pass)
+            .ui(XPATH, UI.SAVE_BUTTON).click()
             .ui(XPATH, UI.LOG_OUT_BUTTON_IN_ADMIN).click()
             .goTo(URL.MAIN_COSTUMER_URL)
-            .ui(XPATH, UI.USER_NAME_INPUT_ON_INDEX).sendKeys(email)
-            .ui(XPATH, UI.PASSWORD_INPUT_ON_INDEX).sendKeys(pass)
+            .ui(XPATH, UI.USER_NAME_INPUT_ON_INDEX).sendKeysToElement(email)
+            .ui(XPATH, UI.PASSWORD_INPUT_ON_INDEX).sendKeysToElement(pass)
             .ui(XPATH, UI.LOG_IN_BUTTON).click()
             .waitABit(10_000);
     }

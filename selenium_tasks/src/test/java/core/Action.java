@@ -1,7 +1,10 @@
 package core;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
 import java.util.List;
+import static core.Type.CSS;
 
 public class Action {
 
@@ -36,7 +39,7 @@ public class Action {
         return this;
     }
 
-    public Action sendKeys(String text){
+    public Action sendKeysToElement(String text){
         driver.findElement(getElementByLocatorType(customWebElement.getType(),customWebElement.getLocator())).sendKeys(text);
         return this;
     }
@@ -67,8 +70,8 @@ public class Action {
     }
 
     public Action setAttribute(String attribute, String value){
-        if (customWebElement.getType().equals(Type.CSS)) {
-            String js = "$(\"[name=purchase_price]\").attr(\"" + attribute + "\", \"" + value + "\");";
+        if (customWebElement.getType().equals(CSS)) {
+            String js = "$('" + customWebElement.getLocator() + "').attr(\"" + attribute + "\", \"" + value + "\");";
             ((JavascriptExecutor) driver).executeScript(js);
             return this;
         }
@@ -95,6 +98,18 @@ public class Action {
         } else {
             return false;
         }
+    }
+
+    public Action select(String value){
+        Select select = new Select(driver.findElement(
+                        getElementByLocatorType(customWebElement.getType(), customWebElement.getLocator())));
+        select.selectByValue(value);
+        return this;
+    }
+
+    public Action sendKeys(String text){
+       new Actions(driver).sendKeys(text).perform();
+       return this;
     }
 
     private By getElementByLocatorType(Type type, String locator){
