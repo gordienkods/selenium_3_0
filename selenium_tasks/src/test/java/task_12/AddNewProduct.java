@@ -43,7 +43,7 @@ public class AddNewProduct {
                 .ui(XPATH, UI.RUBBER_DUCKS_CATEGORY).click()
                 .ui(XPATH, UI.PRODUCT_GROUPS_MALE).click()
                 .ui(CSS, UI.QUANTITY).setAttribute("value", "100")
-                .ui(XPATH, UI.UPLOAD_IMAGES_INPUT).sendKeysToElement(Tools.getAbsoluteFilePath("src\\main\\resources\\smail.jpg"))
+                .ui(XPATH, UI.UPLOAD_IMAGES_INPUT).sendKeysToElement(Tools.getAbsoluteFilePath("src\\main\\resources\\smile.jpg"))
                 .ui(CSS, UI.DATE_VLID_FROM_INPUT).setAttribute("value","2016-12-05")
                 .ui(CSS, UI.DATE_VLID_TO_INPUT).setAttribute("value","2016-12-15")
                 .ui(XPATH, UI.INFORMATION_TAB).click()
