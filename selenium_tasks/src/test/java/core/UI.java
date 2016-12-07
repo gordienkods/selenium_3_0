@@ -42,5 +42,12 @@ public class UI {
     public static final String PRICE_INPUT_EUR = "[name=\"prices[EUR]\"]";
     public static final String PRICE_INCLU_TAX_USD_INPUT = "[name=\"gross_prices[USD]\"]";
     public static final String PRICE_INCLU_TAX_EUR_INPUT = "[name=\"gross_prices[EUR]\"]";
+    public static final String PRODUCT_FOR_CHART_ADDING = "//*[contains(text(), 'smile1480963409282')]";
+    public static final String ADD_TO_CART_BUTTON = "//button[text()='Add To Cart']";
+    public static final String PRODUCTS_QUANTITY_IN_CHART = "//span[@class='quantity']";
+    public static final String PRODUCTS_QUANTITY_IN_TABLE = "//*[text()='smile1480963409282']/preceding-sibling::*";
+    public static final String CHECKOUT_URL_UNDER_CHART_COUNTER = "//a[text()='Checkout »']";
+    public static final String UPDATE_BUTTON = "//button[text()='Update']";
+
 
 }

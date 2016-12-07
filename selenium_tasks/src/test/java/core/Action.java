@@ -3,13 +3,18 @@ package core;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.util.List;
 import static core.Type.CSS;
+import static core.Type.XPATH;
+import static org.openqa.selenium.support.ui.ExpectedConditions.textToBePresentInElementLocated;
 
 public class Action {
 
     private WebDriver driver = null;
     private CustomWebElement customWebElement = null;
+    private final Integer WAIT = 15;
 
     public Action setDriver(WebDriver driver) {
         if (driver != null) {
@@ -110,6 +115,23 @@ public class Action {
     public Action sendKeys(String text){
        new Actions(driver).sendKeys(text).perform();
        return this;
+    }
+
+    public Action waitWhileTextNotPresentInElement(String text){
+        WebDriverWait wait = new WebDriverWait(driver, WAIT);
+        wait.until(textToBePresentInElementLocated(
+                getElementByLocatorType(customWebElement.getType(), customWebElement.getLocator()),
+
+                text));
+        return this;
+    }
+
+    public Boolean isTexPresentOnPage(String text){
+        if (findElements(XPATH,"//*[contains(text(),'" + text + "')]").size() > 0){
+            return true;
+        } else {
+            return false;
+        }
     }
 
     private By getElementByLocatorType(Type type, String locator){
