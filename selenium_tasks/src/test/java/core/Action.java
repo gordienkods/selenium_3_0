@@ -5,9 +5,13 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
+
 import static core.Type.CSS;
 import static core.Type.XPATH;
+import static org.openqa.selenium.support.ui.ExpectedConditions.numberOfWindowsToBe;
 import static org.openqa.selenium.support.ui.ExpectedConditions.textToBePresentInElementLocated;
 
 public class Action {
@@ -15,6 +19,8 @@ public class Action {
     private WebDriver driver = null;
     private CustomWebElement customWebElement = null;
     private final Integer WAIT = 15;
+    private Set<String> oldWindows;
+    private String mainWindowId = null;
 
     public Action setDriver(WebDriver driver) {
         if (driver != null) {
@@ -132,6 +138,37 @@ public class Action {
         } else {
             return false;
         }
+    }
+
+    public Action setCurrentWindows(){
+        mainWindowId = driver.getWindowHandle();
+        oldWindows = driver.getWindowHandles();
+        return this;
+    }
+
+    public Action switchToNewWindow(){
+        WebDriverWait wait = new WebDriverWait(driver, WAIT);
+        wait.until(numberOfWindowsToBe(oldWindows.size() + 1));
+        Iterator<String> iteratorNewWindows = driver.getWindowHandles().iterator();
+
+        while (iteratorNewWindows.hasNext()){
+            String windowId = iteratorNewWindows.next();
+            if (!oldWindows.contains(windowId)){
+                driver.switchTo().window(windowId);
+                return this;
+            }
+        }
+        throw new CoreException("No new window found!");
+    }
+
+    public Action switchToMainWindow(){
+        driver.switchTo().window(mainWindowId);
+        return this;
+    }
+
+    public Action closeCurrentWindow() {
+        driver.close();
+        return this;
     }
 
     private By getElementByLocatorType(Type type, String locator){

@@ -48,6 +48,12 @@ public class UI {
     public static final String PRODUCTS_QUANTITY_IN_TABLE = "//*[text()='smile1480963409282']/preceding-sibling::*";
     public static final String CHECKOUT_URL_UNDER_CHART_COUNTER = "//a[text()='Checkout »']";
     public static final String UPDATE_BUTTON = "//button[text()='Update']";
-
+    public static final String LINK_CODE_ISO_3166_1_ALPHA_2 = "//*[contains(text(),'(ISO 3166-1 alpha-2)')]//a";
+    public static final String LINK_ISO_3166_1_ALPHA_3 = "//*[contains(text(),'(ISO 3166-1 alpha-3)')]//a";
+    public static final String TAX_ID_FORMAT = "//*[contains(text(),'Tax ID Format')]/following-sibling::a";
+    public static final String ADDRESS_FORMAT = "//*[contains(text(),'Address Format')]/following-sibling::a[@target='_blank']";
+    public static final String POSTCODE_FORMAT = "//*[contains(text(),'Postcode Format')]/following-sibling::a";
+    public static final String CURRENCY_CODE = "//*[contains(text(),'Currency Code')]/following-sibling::a";
+    public static final String PHONE_COUNTRY_CODE = "//*[contains(text(),'Phone Country Code')]/following-sibling::a";
 
 }
