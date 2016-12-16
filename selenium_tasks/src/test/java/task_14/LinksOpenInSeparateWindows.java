@@ -24,10 +24,10 @@ public class LinksOpenInSeparateWindows {
     @BeforeClass
     public void beforeClass(){
         act.setDriver(CustomDriverFactory.getDriver(Driver.CHROME))
-                .goTo(URL.MAIN_URL)
+                .goTo("http://localhost/litecart/admin/login.php")
                 .setCookie(new Cookie("remember_me", "admin%3Ad8bcbe282b74952a8f4399be154cda5247815692"))
                 .setCookie(new Cookie("LCSESSID", "meha6tiu4g606btg886t0p9a16"))
-                .goTo(URL.ADMIN + URL.AFGHANISTAN_EDIT_COUNTRY_PAGE)
+                .goTo("http://localhost/litecart/admin/?app=catalog&doc=catalog&category_id=1")
                 .getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
     @AfterClass

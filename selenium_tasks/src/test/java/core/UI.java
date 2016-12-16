@@ -55,5 +55,6 @@ public class UI {
     public static final String POSTCODE_FORMAT = "//*[contains(text(),'Postcode Format')]/following-sibling::a";
     public static final String CURRENCY_CODE = "//*[contains(text(),'Currency Code')]/following-sibling::a";
     public static final String PHONE_COUNTRY_CODE = "//*[contains(text(),'Phone Country Code')]/following-sibling::a";
+    public static final String ALL_PRODUCTS_IN_CATALOG = "//a[contains(@href,'edit_product&category_id=1&product_id=') and not (@title)]";
 
 }
