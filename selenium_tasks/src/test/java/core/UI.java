@@ -45,7 +45,7 @@ public class UI {
     public static final String PRODUCT_FOR_CHART_ADDING = "//*[contains(text(), 'smile1480963409282')]";
     public static final String ADD_TO_CART_BUTTON = "//button[text()='Add To Cart']";
     public static final String PRODUCTS_QUANTITY_IN_CHART = "//span[@class='quantity']";
-    public static final String PRODUCTS_QUANTITY_IN_TABLE = "//*[text()='smile1480963409282']/preceding-sibling::*";
+    public static final String PRODUCTS_QUANTITY_IN_TABLE = "//*[text()='Purple Duck']/preceding-sibling::*";
     public static final String CHECKOUT_URL_UNDER_CHART_COUNTER = "//a[text()='Checkout »']";
     public static final String UPDATE_BUTTON = "//button[text()='Update']";
     public static final String LINK_CODE_ISO_3166_1_ALPHA_2 = "//*[contains(text(),'(ISO 3166-1 alpha-2)')]//a";

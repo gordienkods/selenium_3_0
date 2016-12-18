@@ -79,8 +79,8 @@ public class AllAdminMenuCheck {
             case "Order Success" : {
                 return "Order Success Modules";
             }
-            case "Order Action" : {
-                return "Order Action Modules";
+            case "Order CommonPage" : {
+                return "Order CommonPage Modules";
             }
             case "Store Info" : {
                 return "Settings";
