@@ -13,7 +13,7 @@ import org.testng.AssertJUnit;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import java.util.List;
+
 import java.util.concurrent.TimeUnit;
 
 public class AllAdminMenuCheck {
@@ -47,18 +47,78 @@ public class AllAdminMenuCheck {
             mainMenuElement.click();
 
             Integer subMenuElements = act.getDriver().findElements(By.xpath(UI.MAIN_MENU_ALL_MAIN_ELEMENTS)).get(i)
-                                                     .findElements(By.xpath(UI.MAIN_MENU_ALL_MAIN_ELEMENTS + UI.SUB_ELEMENTS_IN_LEFT_MENNU)).size();
+                                                     .findElements(By.xpath(UI.MAIN_MENU_ALL_MAIN_ELEMENTS + UI.SUB_ELEMENTS_IN_LEFT_MENU)).size();
+
             for (int j = 0; j < subMenuElements; j++){
                 WebElement subMenuElement = act.getDriver().findElements(By.xpath(UI.MAIN_MENU_ALL_MAIN_ELEMENTS)).get(i)
-                                                           .findElements(By.xpath(UI.MAIN_MENU_ALL_MAIN_ELEMENTS + UI.SUB_ELEMENTS_IN_LEFT_MENNU)).get(j);
+                                                           .findElements(By.xpath(UI.MAIN_MENU_ALL_MAIN_ELEMENTS + UI.SUB_ELEMENTS_IN_LEFT_MENU)).get(j);
                 expPageHeader = subMenuElement.getText();
                 subMenuElement.click();
-                actPageHeader = act.ui(Type.XPATH, ".//*[@id='content']/h1").getText();
-//                AssertJUnit.assertEquals(doMapMainMenuHeaderToPageHeader(expPageHeader), actPageHeader);
+                actPageHeader = act.ui(Type.XPATH, UI.ADMIN_PAGES_HEADERS).getText();
+                AssertJUnit.assertEquals(doMapMainMenuHeaderToPageHeader(expPageHeader), actPageHeader);
                 System.err.println(" SUB MENU: " + expPageHeader);
             }
         }
 
+    }
+
+    private String doMapMainMenuHeaderToPageHeader(String mainMenuHeader){
+        switch (mainMenuHeader){
+            case "Background Jobs" : {
+                return "Job Modules";
+            }
+            case "Customer" : {
+                return "Customer Modules";
+            }
+            case "Shipping" : {
+                return "Shipping Modules";
+            }
+            case "Payment" : {
+                return "Payment Modules";
+            }
+            case "Order Total" : {
+                return "Order Total Modules";
+            }
+            case "Order Success" : {
+                return "Order Success Modules";
+            }
+            case "Order Action" : {
+                return "Order Action Modules";
+            }
+            case "Order CommonPage" : {
+                return "Order CommonPage Modules";
+            }
+            case "Store Info" : {
+                return "Settings";
+            }
+            case "Defaults" : {
+                return "Settings";
+            }
+            case "General" : {
+                return "Settings";
+            }
+            case "Listings" : {
+                return "Settings";
+            }
+            case "Images" : {
+                return "Settings";
+            }
+            case "Checkout" : {
+                return "Settings";
+            }
+            case "Advanced" : {
+                return "Settings";
+            }
+            case "Security" : {
+                return "Settings";
+            }
+            case "Scan Files" : {
+                return "Scan Files For Translations";
+            }
+            default : {
+                return mainMenuHeader;
+            }
+        }
     }
 
 }

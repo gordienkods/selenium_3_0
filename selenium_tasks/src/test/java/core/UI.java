@@ -56,6 +56,7 @@ public class UI {
     public static final String CURRENCY_CODE = "//*[contains(text(),'Currency Code')]/following-sibling::a";
     public static final String PHONE_COUNTRY_CODE = "//*[contains(text(),'Phone Country Code')]/following-sibling::a";
     public static final String ALL_PRODUCTS_IN_CATALOG = "//a[contains(@href,'edit_product&category_id=1&product_id=') and not (@title)]";
-    public static final String SUB_ELEMENTS_IN_LEFT_MENNU = "//li";
+    public static final String SUB_ELEMENTS_IN_LEFT_MENU = "//li";
+    public static final String ADMIN_PAGES_HEADERS = ".//*[@id='content']/h1";
 
 }
